@@ -3,30 +3,43 @@
 }
 
 <h1>Register</h1>
-<form asp-action="Register" method="post">
-  <div class="form-group">
-    <label for"Name">Username</label>
-    <input type="text" class="form-control" id="Name" name="Name" required>
-  </div>
 
-  <div class="form-group">
-      <label for"Email">Email</label>
-      <input type="email" class="form-control" id="Email" name="Email" required>
-  </div>
-
-    <div class="form-group">
-        <label for"Password">Password</label>
-        <input type="password" class="form-control" id="Password" name="Password" required>
+<div class="row">
+    <!-- Left column-->
+    <div class="col-md-4 login-reg-image">
+        <label class="h5">Hello World</label>
     </div>
-
-    <div class="form-group">
-      <label for="TeamName">Team Name</label>
-      <select class="form-control" id="TeamName" name="TeamName" required>
-        <option value="Option A">Option A</option>
-        <option value="Option B">Option B</option>
-        <option value="Option C">Option C</option>
-      </select>
+    
+    <div class="col-md-8">
+        <form asp-action="Register" method="post">
+            <div class="form-group">
+                <label for="Name">Username</label>
+                <input type="text" class="form-control" id="Name" name="Name" required>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" id="Password" name="Password" required>
+            </div>
+            <div class="form-group">
+                <label for="TeamName">Team Name</label>
+                <select class="form-control" id="TeamName" name="TeamName" required>
+                    <option value="Option A">Option A</option>
+                    <option value="Option B">Option B</option>
+                    <option value="Option C">Option C</option>
+                </select>
+            </div>
+            
+            @await Html.PartialAsync("_CustomButton", new DigiGall.Models.ButtonModel
+            {
+                Text = "Register",
+                Class = "custom-button digi-btn-primary",
+                Type = "submit",
+                Attributes = "id='login-button'"
+            })
+        </form>
     </div>
-
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+</div>

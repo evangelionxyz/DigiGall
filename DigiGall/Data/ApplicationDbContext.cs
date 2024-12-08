@@ -10,6 +10,7 @@ namespace DigiGall.Data
             : base(options)
         {
         }
-        public DbSet<DigiGall.Models.User> User { get; set; } = default!;
+        
+        public DbSet<DigiGall.Models.User> Users { get; set; } = default!;
     }
 }

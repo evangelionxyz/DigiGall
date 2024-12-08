@@ -1,12 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DigiGall.Data;
+using Microsoft.AspNetCore.Mvc;
 using DigiGall.Models;
 
 namespace DigiGall.Controllers
 {
     public class AuthController : Controller
     {
-        private static List<User> users = new List<User>();
+        private readonly ApplicationDbContext _context;
 
+        public AuthController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        
         [HttpGet]
         public IActionResult Register()
         {
@@ -16,14 +22,13 @@ namespace DigiGall.Controllers
         [HttpPost]
         public IActionResult Register(string Name, string Email, string Password, string TeamName)
         {
-            int newId = users.Count > 0 ? users.Max(u => u.Id) + 1 : 1;
-
-            User newUser = new User(Name, TeamName, Email, Password)
-            {
-                Id = newId
-            };
-
-            users.Add(newUser);
+            string newId = Guid.NewGuid().ToString();
+            User newUser = new User(newId, Name, TeamName, Email, Password);
+            
+            // TODO: save the user data to database
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+            
             return RedirectToAction("Login");
         }
 

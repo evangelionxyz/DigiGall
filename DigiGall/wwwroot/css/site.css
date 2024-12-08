@@ -20,3 +20,26 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.custom-button {
+  width: 300px;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.digi-btn-primary {
+  background-color: #007bff;
+}
+
+.login-reg-image {
+  background: #b8b8b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
