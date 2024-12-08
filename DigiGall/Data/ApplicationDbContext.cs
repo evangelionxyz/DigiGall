@@ -9,7 +9,12 @@ namespace DigiGall.Data
             : base(options)
         {
         }
-        
+
+        public async Task<List<string>> GetUserNameAsync()
+        {
+            return await User.Select(u => u.Name).ToListAsync();
+        }
+
         public DbSet<DigiGall.Models.User> User { get; set; } = default!;
     }
 }

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using DigiGall.Data;
 using DigiGall.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,16 +7,19 @@ namespace DigiGall.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _dbContext;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext dbContext, ILogger<HomeController> logger)
         {
+            _dbContext = dbContext;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var userNames = await _dbContext.GetUserNameAsync();
+            return View(userNames);
         }
 
         public IActionResult Privacy()

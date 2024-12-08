@@ -6,11 +6,11 @@ namespace DigiGall.Controllers
 {
     public class AuthController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _dbContext;
 
         public AuthController(ApplicationDbContext context)
         {
-            _context = context;
+            _dbContext = context;
         }
         
         [HttpGet]
@@ -26,8 +26,8 @@ namespace DigiGall.Controllers
             User newUser = new User(newId, Name, TeamName, Email, Password);
             
             // TODO: save the user data to database
-            _context.User.Add(newUser);
-            _context.SaveChanges();
+            _dbContext.User.Add(newUser);
+            _dbContext.SaveChanges();
             
             return RedirectToAction("Login");
         }

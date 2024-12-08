@@ -1,8 +1,27 @@
-﻿@{
+﻿@model List<string>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome To</h1>
     <p>DigiGall Quest</p>
+
+    <h2>User Names</h2>
+
+    @if (Model != null && Model.Any())
+    {
+      <ul>
+        @foreach(var userName in Model)
+        {
+          <li>@userName</li>
+        }
+      </ul>
+    }
+    else
+    {
+      <p>No users found.</p>
+    }
+
 </div>
