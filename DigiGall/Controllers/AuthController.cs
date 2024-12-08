@@ -26,7 +26,7 @@ namespace DigiGall.Controllers
             User newUser = new User(newId, Name, TeamName, Email, Password);
             
             // TODO: save the user data to database
-            _context.Users.Add(newUser);
+            _context.User.Add(newUser);
             _context.SaveChanges();
             
             return RedirectToAction("Login");

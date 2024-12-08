@@ -51,7 +51,7 @@ namespace DigiGall.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

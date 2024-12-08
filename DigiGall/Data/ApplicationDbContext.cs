@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using DigiGall.Models;
 
 namespace DigiGall.Data
 {
@@ -11,6 +10,6 @@ namespace DigiGall.Data
         {
         }
         
-        public DbSet<DigiGall.Models.User> Users { get; set; } = default!;
+        public DbSet<DigiGall.Models.User> User { get; set; } = default!;
     }
 }

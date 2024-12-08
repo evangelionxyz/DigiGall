@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DigiGall.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241206092344_initialSetup")]
-    partial class initialSetup
+    [Migration("20241208160637_InitialSetup")]
+    partial class InitialSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,17 +27,32 @@ namespace DigiGall.Data.Migrations
 
             modelBuilder.Entity("DigiGall.Models.User", b =>
                 {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<string>("name")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.Property<int>("Galleon")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("User");
                 });

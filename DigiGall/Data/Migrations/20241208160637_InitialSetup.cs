@@ -5,7 +5,7 @@
 namespace DigiGall.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initialSetup : Migration
+    public partial class InitialSetup : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,19 +14,18 @@ namespace DigiGall.Data.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false).Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TeamName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rank = table.Column<int>(type: "int", nullable: false),
                     Galleon = table.Column<int>(type: "int", nullable: false),
+                    Rank = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
-                }
-                );
+                });
         }
 
         /// <inheritdoc />
