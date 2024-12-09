@@ -5,8 +5,7 @@ namespace DigiGall.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
         {
         }
 
@@ -15,6 +14,6 @@ namespace DigiGall.Data
             return await User.Select(u => u.Name).ToListAsync();
         }
 
-        public DbSet<DigiGall.Models.User> User { get; set; } = default!;
+        public DbSet<Models.User> User { get; set; } = default!;
     }
 }

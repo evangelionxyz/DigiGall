@@ -2,6 +2,8 @@
     ViewData["Title"] = "Register Page";
 }
 
+@model RegisterViewModel
+
 <h1>Register</h1>
 
 <div class="row">
@@ -13,23 +15,25 @@
     <div class="col-md-8">
         <form asp-action="Register" method="post">
             <div class="form-group">
-                <label for="Name">Username</label>
-                <input type="text" class="form-control" id="Name" name="Name" required>
+                <label>Username</label>
+                <input type="text" name="Name" class="form-control" required>
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="Email">Email</label>
-                <input type="email" class="form-control" id="Email" name="Email" required>
+                <label>Email</label>
+                <input type="email" name="Email" class="form-control" required>
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label for="Password">Password</label>
-                <input type="password" class="form-control" id="Password" name="Password" required>
+                <label>Password</label>
+                <input type="password" name="Password" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="TeamName">Team Name</label>
-                <select class="form-control" id="TeamName" name="TeamName" required>
-                    <option value="Option A">Option A</option>
-                    <option value="Option B">Option B</option>
-                    <option value="Option C">Option C</option>
+                <label>Team Name</label>
+                <select class="form-control" name="TeamName" required>
+                    <option value="Gryffindor">Gryffindor</option>
+                    <option value="Hufflepuff">Hufflepuff</option>
+                    <option value="Ravenclaw">Ravenclaw</option>
                 </select>
             </div>
             

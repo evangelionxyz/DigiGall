@@ -16,19 +16,33 @@ namespace DigiGall.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            return View(new RegisterViewModel());
         }
 
         [HttpPost]
-        public IActionResult Register(string Name, string Email, string Password, string TeamName)
+        public IActionResult Register(RegisterViewModel model)
         {
+            // check if the username or email already exist
+            bool usernameExists = _dbContext.User.Any(u => u.Name == model.Name);
+            bool emailExists = _dbContext.User.Any(u => u.Email == model.Email);
+
+            if (usernameExists || emailExists)
+            {
+                if (usernameExists)
+                    ModelState.AddModelError(nameof(model.Name), "Username is already taken.");
+                if (emailExists)
+                    ModelState.AddModelError(nameof(model.Email), "Email is already registered.");
+
+                return View();
+            }
+
+            // proceed to create a new user
             string newId = Guid.NewGuid().ToString();
-            User newUser = new User(newId, Name, TeamName, Email, Password);
+            User newUser = new User(newId, model.Name, model.TeamName, model.Email, model.Password);
             
-            // TODO: save the user data to database
             _dbContext.User.Add(newUser);
             _dbContext.SaveChanges();
-            
+
             return RedirectToAction("Login");
         }
 
