@@ -15,5 +15,6 @@ namespace DigiGall.Data
         }
 
         public DbSet<Models.User> User { get; set; } = default!;
+        public Models.User CurrentUser { get; set; } = default!;
     }
 }

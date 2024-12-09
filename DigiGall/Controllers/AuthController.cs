@@ -12,15 +12,9 @@ namespace DigiGall.Controllers
         {
             _dbContext = context;
         }
-        
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View(new RegisterViewModel());
-        }
 
         [HttpPost]
-        public IActionResult Register(RegisterViewModel model)
+        public IActionResult Register(AuthViewModel model)
         {
             // check if the username or email already exist
             bool usernameExists = _dbContext.User.Any(u => u.Name == model.Name);
@@ -33,7 +27,7 @@ namespace DigiGall.Controllers
                 if (emailExists)
                     ModelState.AddModelError(nameof(model.Email), "Email is already registered.");
 
-                return View();
+                return View(model);
             }
 
             // proceed to create a new user
@@ -44,6 +38,41 @@ namespace DigiGall.Controllers
             _dbContext.SaveChanges();
 
             return RedirectToAction("Login");
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View(new AuthViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Login(AuthViewModel model)
+        {
+            var foundUser = _dbContext.User.FirstOrDefault(u =>
+                (u.Name == model.Name || u.Email == model.Name) &&
+                u.Password == model.Password
+            );
+
+            if (foundUser == null)
+            {
+                ModelState.AddModelError("Name", "Invalid username/email or password");
+                return View(model);
+            }
+
+            _dbContext.CurrentUser = new User
+            {
+                Id = foundUser.Id,
+                Name = foundUser.Name,
+                Email = foundUser.Email,
+                Password = foundUser.Password,
+                TeamName = foundUser.TeamName,
+                Rank = foundUser.Rank,
+                Galleon = foundUser.Galleon
+            };
+
+            // parameter: Action, Controller
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Login()

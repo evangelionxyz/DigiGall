@@ -4,11 +4,11 @@ namespace DigiGall.Models
 {
     public class User
     {
-        public string Id { get; set; } = "invalid";
-        public string Name { get; private set; } = "invalid";
-        public string TeamName { get; set; } = "invalid";
-        public string Email { get; set; } = "invalid";
-        public string Password { get; set; } = "invalid";
+        public string Id { get; set; } = default!;
+        public string Name { get; set; } = default!;
+        public string TeamName { get; set; } = default!;
+        public string Email { get; set; } = default!;
+        public string Password { get; set; } = default!;
         public int Galleon { get; set; } = 0;
         public int Rank { get; set; } = 1;
 
