@@ -2,13 +2,14 @@ using System.Diagnostics;
 using DigiGall.Data;
 using DigiGall.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DigiGall.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _dbContext;
+        private readonly ILogger<HomeController> _logger;
 
         public HomeController(ApplicationDbContext dbContext, ILogger<HomeController> logger)
         {
@@ -18,9 +19,11 @@ namespace DigiGall.Controllers
 
         public IActionResult Index()
         {
-            if (_dbContext.CurrentUser == null)
+            var userId = HttpContext.Session.GetString("UserId");
+            if (userId.IsNullOrEmpty())
                 return RedirectToAction("Login", "Auth");
 
+            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
             return View();
         }
 

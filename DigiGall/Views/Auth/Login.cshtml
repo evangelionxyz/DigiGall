@@ -19,6 +19,9 @@
     <!-- Right column-->
     <div class="auth-content">
         <form asp-action="Login" method="post">
+            <div class="text-center" style="font-size: 2rem; font-weight:500">
+              <label>Login</label>
+            </div>
 
             <div class="mb-3 form-group">
                 <label class="form-label">Email</label>
@@ -28,7 +31,8 @@
                 <label class="form-label">Password</label>
                 <input type="password" name="Password" class="form-control" required>
             </div>
-            <span asp-validation-for="Name" class="text-danger"></span>
+
+            <span asp-validation-for="Email" class="text-danger"></span>
             @await Html.PartialAsync("_CustomButton", new DigiGall.Models.ButtonModel
             {
                 Text = "Login",

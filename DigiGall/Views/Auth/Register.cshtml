@@ -4,52 +4,65 @@
 
 @model User
 
-<h1>Register</h1>
+<div class="auth-container">
 
-<div class="row">
     <!-- Left column-->
-    <div class="col-md-4 login-reg-image">
-        <label class="h5">Register-Image</label>
+    <div class="auth-content" style="background: blue">
+        <div class="auth-welcome">
+            <label>Welcome</label>
+            <img class="auth-welcome-image"
+                 src="~/resources/digigall_transparent.png"
+                 alt="DigiGall Logo" />
+        </div>
+
     </div>
-    
-    <div class="col-md-8">
+
+    <!-- Right column-->
+    <div class="auth-content">
         <form asp-action="Register" method="post">
-            <div class="form-group">
-                <label>Username</label>
+            <div class="text-center" style="font-size: 2rem; font-weight:500">
+                <label>Register</label>
+            </div>
+
+            <div class="mb-2 form-group">
+                <label class="form-label">Username</label>
                 <input type="text" name="Name" class="form-control" required>
-                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label>Email</label>
+
+            <div class="mb-2 form-group">
+                <label class="form-label">Email</label>
                 <input type="email" name="Email" class="form-control" required>
-                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label>Password</label>
+
+            <div class="mb-2 form-group">
+                <label class="form-label">Password</label>
                 <input type="password" name="Password" class="form-control" required>
             </div>
-            <div class="form-group">
-                <label>Team Name</label>
-                <select class="form-control" name="TeamName" required>
-                    <option value="Gryffindor">Gryffindor</option>
-                    <option value="Hufflepuff">Hufflepuff</option>
-                    <option value="Ravenclaw">Ravenclaw</option>
-                </select>
+
+            <div class="mb-4 form-group">
+                <label class="form-label">Date of birth</label>
+                <input type="date" name="DateOfBirth" class="form-control" required>
             </div>
-            
+
+            <span asp-validation-for="Email" class="text-danger"></span>
             @await Html.PartialAsync("_CustomButton", new DigiGall.Models.ButtonModel
-            {
-                Text = "Register",
-                Class = "custom-button digi-btn-primary",
-                Type = "submit",
-                Attributes = "id='login-button'"
-            })
+           {
+               Text = "Register",
+               Class = "custom-button digi-btn-primary",
+               Type = "submit",
+               Attributes = "id='register-button'"
+           })
         </form>
 
-        <div class="mt-3">
-            <a asp-controller="Auth" asp-action="Login" class="btn btn-secondary">
-                Login
-            </a>
+        <div class="mt-3 text-center">
+            <label>Have an account?</label>
+            <label>
+                <a asp-controller="Auth" asp-action="Login">
+                    Login
+                </a>
+            </label>
         </div>
+
+
     </div>
 </div>

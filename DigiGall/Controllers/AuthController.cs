@@ -32,7 +32,7 @@ namespace DigiGall.Controllers
 
             // proceed to create a new user
             string newId = Guid.NewGuid().ToString();
-            User newUser = new User(newId, model.Name, model.TeamName, model.Email, model.Password);
+            User newUser = new User(newId, model.Name, model.Email, model.Password, model.DateOfBirth);
             
             _dbContext.User.Add(newUser);
             _dbContext.SaveChanges();
@@ -44,26 +44,16 @@ namespace DigiGall.Controllers
         public IActionResult Login(User model)
         {
             var foundUser = _dbContext.User.FirstOrDefault(u =>
-                (u.Name == model.Name || u.Email == model.Name) &&
-                u.Password == model.Password
-            );
+                (u.Email == model.Email) && u.Password == model.Password);
 
             if (foundUser == null)
             {
-                ModelState.AddModelError("Name", "Invalid username/email or password");
+                ModelState.AddModelError("Email", "Invalid email or password");
                 return View(model);
             }
 
-            _dbContext.CurrentUser = new User
-            {
-                Id = foundUser.Id,
-                Name = foundUser.Name,
-                Email = foundUser.Email,
-                Password = foundUser.Password,
-                TeamName = foundUser.TeamName,
-                Rank = foundUser.Rank,
-                Galleon = foundUser.Galleon
-            };
+            HttpContext.Session.SetString("UserId", foundUser.Id);
+            HttpContext.Session.SetString("UserName", foundUser.Name);
 
             // parameter: Action, Controller
             return RedirectToAction("Index", "Home");
