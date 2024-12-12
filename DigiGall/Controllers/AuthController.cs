@@ -59,6 +59,13 @@ namespace DigiGall.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult Account()
+        {
+            var userId = HttpContext.Session.GetString("UserId");
+            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
+            return View(_dbContext.CurrentUser);
+        }
+
         public IActionResult Register()
         {
             return View();

@@ -27,6 +27,27 @@ namespace DigiGall.Controllers
             return View();
         }
 
+        public IActionResult Quests()
+        {
+            var userId = HttpContext.Session.GetString("UserId");
+            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
+            return View();
+        }
+
+        public IActionResult History()
+        {
+            var userId = HttpContext.Session.GetString("UserId");
+            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
+            return View();
+        }
+
+        public IActionResult MasteryOfMagic()
+        {
+            var userId = HttpContext.Session.GetString("UserId");
+            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

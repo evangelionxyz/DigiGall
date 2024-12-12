@@ -19,16 +19,27 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                  @if (_context.CurrentUser != null)
-                  {
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
-                            </li>
-                        </ul>
-                  }
-                </div>
+                @if (_context.CurrentUser != null)
+                {
+                  <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                      <ul class="navbar-nav flex-grow-1">
+                          <li class="nav-item">
+                              <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Quests">Quests</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="History">History</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="MasteryOfMagic">Mastery Of Magic</a>
+                          </li>
+                      </ul>
+                      <ul class="navbar-nav">
+                        <li class="nav-item">
+                           <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Account">Account</a>
+                        </li>
+                      </ul>
+                  </div>
+                }
             </div>
         </nav>
     </header>
