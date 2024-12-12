@@ -32,7 +32,7 @@ namespace DigiGall.Controllers
 
             // proceed to create a new user
             string newId = Guid.NewGuid().ToString();
-            User newUser = new User(newId, model.Name, model.Email, model.Password, model.DateOfBirth);
+            User newUser = new User(newId, model.Name, model.Email, model.Password, model.Phone, model.DateOfBirth);
             
             _dbContext.User.Add(newUser);
             _dbContext.SaveChanges();

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DigiGall.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241212052220_InitialSetup")]
+    [Migration("20241212054623_InitialSetup")]
     partial class InitialSetup
     {
         /// <inheritdoc />
@@ -45,6 +45,10 @@ namespace DigiGall.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
