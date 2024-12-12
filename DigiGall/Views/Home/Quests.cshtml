@@ -1,6 +1,35 @@
-﻿@{
+﻿@model DigiGall.Models.User
+
+@{
     ViewData["Title"] = "Quests Page";
     Layout = "_Layout";
 }
 
-<h1>Quests page</h1>
+<div class="quest-container">
+  <div style="display: flex; flex-direction:column;
+            align-content:center; 
+            text-align:center;
+            min-height: 30%;
+            margin-bottom: 2rem;
+            height: auto;
+  ">
+    <h1 style="font-size: 4rem; font-weight:700;">Quests</h1>
+        <label style="font-size: 1.2rem; margin-top: 0.5rem">
+        Complete more Quests to earn more DigiGall
+        <br>Tip: Exchange them into Galleons to collect your
+        <br>favorite magic items!
+    </label>
+  </div>
+
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between"
+         style="font-size:1.5rem">
+        <label class="flex-grow-1">
+            Total Quest Completed This Week: 0
+        </label>
+        <label>
+            Filter
+        </label>
+    </div>
+    
+</div>
+
