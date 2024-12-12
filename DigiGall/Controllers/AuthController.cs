@@ -14,7 +14,7 @@ namespace DigiGall.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(AuthViewModel model)
+        public IActionResult Register(User model)
         {
             // check if the username or email already exist
             bool usernameExists = _dbContext.User.Any(u => u.Name == model.Name);
@@ -40,14 +40,8 @@ namespace DigiGall.Controllers
             return RedirectToAction("Login");
         }
 
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View(new AuthViewModel());
-        }
-
         [HttpPost]
-        public IActionResult Login(AuthViewModel model)
+        public IActionResult Login(User model)
         {
             var foundUser = _dbContext.User.FirstOrDefault(u =>
                 (u.Name == model.Name || u.Email == model.Name) &&
@@ -75,9 +69,15 @@ namespace DigiGall.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         public IActionResult Login()
         {
             return View();
         }
     }
+
 }

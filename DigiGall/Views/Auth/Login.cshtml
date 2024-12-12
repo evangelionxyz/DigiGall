@@ -1,29 +1,31 @@
 ﻿@{
     ViewData["Title"] = "Login Page";
 }
-@model AuthViewModel
+@model User
 
-<h1>Login</h1>
+<div class="auth-container">
 
-<div class="row">
     <!-- Left column-->
-    <div class="col-md-4 login-reg-image">
-        <label class="h5">Login-Image</label>
+    <div class="auth-content" style="background: blue">
+        <div class="auth-welcome">
+            <label>Welcome</label>
+            <img class="auth-welcome-image"
+                 src="~/resources/digigall_transparent.png"
+                 alt="DigiGall Logo" />
+        </div>
+       
     </div>
 
     <!-- Right column-->
-    <div class="col-md-8">
+    <div class="auth-content">
         <form asp-action="Login" method="post">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="Name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label>Email</label>
+
+            <div class="mb-3 form-group">
+                <label class="form-label">Email</label>
                 <input type="email" name="Email" class="form-control" required>
             </div>
-            <div class="form-group">
-                <label>Password</label>
+            <div class="mb-4 form-group">
+                <label class="form-label">Password</label>
                 <input type="password" name="Password" class="form-control" required>
             </div>
             <span asp-validation-for="Name" class="text-danger"></span>
@@ -35,5 +37,16 @@
                 Attributes = "id='login-button'"
             })
         </form>
+      
+        <div class="mt-3 text-center">
+            <label>Dont have an account?</label>
+            <label>
+                <a asp-controller="Auth" asp-action="Register">
+                    Register
+                </a>
+            </label>
+        </div>
+        
+
     </div>
 </div>

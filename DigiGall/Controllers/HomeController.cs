@@ -7,8 +7,8 @@ namespace DigiGall.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _dbContext;
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _dbContext;
 
         public HomeController(ApplicationDbContext dbContext, ILogger<HomeController> logger)
         {
@@ -16,14 +16,11 @@ namespace DigiGall.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var userNames = await _dbContext.GetUserNameAsync();
-            return View(userNames);
-        }
+            if (_dbContext.CurrentUser == null)
+                return RedirectToAction("Login", "Auth");
 
-        public IActionResult Privacy()
-        {
             return View();
         }
 

@@ -2,7 +2,7 @@
     ViewData["Title"] = "Register Page";
 }
 
-@model AuthViewModel
+@model User
 
 <h1>Register</h1>
 
@@ -45,5 +45,11 @@
                 Attributes = "id='login-button'"
             })
         </form>
+
+        <div class="mt-3">
+            <a asp-controller="Auth" asp-action="Login" class="btn btn-secondary">
+                Login
+            </a>
+        </div>
     </div>
 </div>

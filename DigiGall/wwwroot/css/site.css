@@ -1,12 +1,39 @@
+@font-face {
+  font-family: 'CrimsonText';
+  src: url("/resources/CrimsonText-Regular.ttf") format('truetype');
+  font-weight: normal; /*regular*/
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CrimsonText';
+  src: url("/resources/CrimsonText-SemiBold.ttf") format('truetype');
+  font-weight: 500; /*medium*/
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CrimsonText';
+  src: url("/resources/CrimsonText-Bold.ttf") format('truetype');
+  font-weight: 700; /*bold*/
+  font-style: normal;
+}
+
+
 html {
   font-size: 14px;
+  font-family: Crimson;
+  font-weight: 400;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+    font-family: CrimsonText;
   }
 }
+
+
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
@@ -19,6 +46,7 @@ html {
 
 body {
   margin-bottom: 60px;
+  font-family: CrimsonText;
 }
 
 .custom-button {
@@ -37,9 +65,33 @@ body {
   background-color: #007bff;
 }
 
-.login-reg-image {
-  background: #b8b8b8;
+.auth-container {
   display: flex;
+  justify-content: center;
+  align-content:space-between;
+  height: auto;
+  width: auto;
+}
+
+.auth-content {
+  display: flex;
+  border: dashed;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 12px;
+}
+
+.auth-welcome {
+  display: flex;
+  text-align: center;
+  color: white;
+  font-size: 2rem;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+.auth-welcome-image {
+  max-height: 250px;
+  max-width: 250px;
 }
