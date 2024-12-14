@@ -6,7 +6,7 @@
 <div class="auth-container container">
 
     <!-- Left column-->
-    <div class="auth-content" style="background: blue">
+    <div class="auth-content" style="background: linear-gradient(to bottom, #7BB7FF, #FFE785);">
         <div class="auth-welcome">
             <label>Welcome</label>
             <img class="auth-welcome-image"
@@ -23,15 +23,15 @@
             </div>
 
             <div class="mb-3 form-group">
-                <label class="form-label">Email</label>
-                <input type="email" name="Email" class="form-control" required>
+                <label class="form-label">Username</label>
+                <input type="text" name="Name" class="form-control" required>
+                <span asp-validation-for="Name" class="form-group text-danger"></span>
             </div>
             <div class="mb-4 form-group">
                 <label class="form-label">Password</label>
                 <input type="password" name="Password" class="form-control" required>
             </div>
 
-            <span asp-validation-for="Email" class="text-danger"></span>
             @await Html.PartialAsync("_CustomButton", new DigiGall.Models.ButtonModel
             {
                 Text = "Login",

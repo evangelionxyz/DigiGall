@@ -16,23 +16,16 @@ namespace DigiGall.Controllers
         [HttpPost]
         public IActionResult Register(User model)
         {
-            // check if the username or email already exist
             bool usernameExists = _dbContext.User.Any(u => u.Name == model.Name);
-            bool emailExists = _dbContext.User.Any(u => u.Email == model.Email);
-
-            if (usernameExists || emailExists)
+            if (usernameExists)
             {
-                if (usernameExists)
-                    ModelState.AddModelError(nameof(model.Name), "Username is already taken.");
-                if (emailExists)
-                    ModelState.AddModelError(nameof(model.Email), "Email is already registered.");
-
+                ModelState.AddModelError("Name", "Username is already taken.");
                 return View(model);
             }
 
-            // proceed to create a new user
             string newId = Guid.NewGuid().ToString();
-            User newUser = new User(newId, model.Name, model.Email, model.Password, model.Phone, model.DateOfBirth);
+            model.House = "Gryffindor";
+            User newUser = new User(newId, model.Name, model.Password, model.House, model.Phone, model.DateOfBirth);
             
             _dbContext.User.Add(newUser);
             _dbContext.SaveChanges();
@@ -43,12 +36,11 @@ namespace DigiGall.Controllers
         [HttpPost]
         public IActionResult Login(User model)
         {
-            var foundUser = _dbContext.User.FirstOrDefault(u =>
-                (u.Email == model.Email) && u.Password == model.Password);
+            var foundUser = _dbContext.User.FirstOrDefault(u => u.Name == model.Name && u.Password == model.Password);
 
             if (foundUser == null)
             {
-                ModelState.AddModelError("Email", "Invalid email or password");
+                ModelState.AddModelError("Name", "Invalid username or password");
                 return View(model);
             }
 

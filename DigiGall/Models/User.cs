@@ -7,8 +7,8 @@ namespace DigiGall.Models
     {
         public string Id { get; set; } = default!;
         public string Name { get; set; } = default!;
-        public string Email { get; set; } = default!;
         public string Password { get; set; } = default!;
+        public string House { get; set; } = default!;
 
         public string Phone { get; set; } = default!;
         public int Galleon { get; set; } = 0;
@@ -23,12 +23,12 @@ namespace DigiGall.Models
         public User() { 
         }
 
-        public User(string id, string name, string email, string password, string phone, DateTime dateOfBirth)
+        public User(string id, string name, string password, string house, string phone, DateTime dateOfBirth)
         {
             Id = id;
             Name = name;
-            Email = email;
             Password = password;
+            House = house;
             Phone = phone;
             DateOfBirth = dateOfBirth;
         }

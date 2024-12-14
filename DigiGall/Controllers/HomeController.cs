@@ -21,7 +21,9 @@ namespace DigiGall.Controllers
         {
             var userId = HttpContext.Session.GetString("UserId");
             if (userId.IsNullOrEmpty())
+            {
                 return RedirectToAction("Login", "Auth");
+            }
 
             _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
             return View();
@@ -35,13 +37,6 @@ namespace DigiGall.Controllers
         }
 
         public IActionResult History()
-        {
-            var userId = HttpContext.Session.GetString("UserId");
-            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
-            return View();
-        }
-
-        public IActionResult MasteryOfMagic()
         {
             var userId = HttpContext.Session.GetString("UserId");
             _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
