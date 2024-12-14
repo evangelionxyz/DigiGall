@@ -68,6 +68,7 @@ body {
   flex-wrap:wrap;
   justify-content: center;
   align-content: normal;
+  margin-top: 2rem;
   width: 100%;
   height: 1080px;
 }
