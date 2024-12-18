@@ -75,10 +75,9 @@
                     </div>
                   </div>
 
-                <label>See details</label>
-              <div>
-
-              </div>
+                  <a asp-controller="Home" asp-action="QuestDetails" asp-route-id="@quest.Id">
+                    <label style="cursor: pointer; text-decoration: underline">See details</label>
+                  </a>
             </div>
         }
     }

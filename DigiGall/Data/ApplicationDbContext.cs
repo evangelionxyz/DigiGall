@@ -25,5 +25,7 @@ namespace DigiGall.Data
         public DbSet<Models.Quest> Quest { get; set; } = default!;
         public DbSet<Models.UserQuest> UserQuest { get; set; } = default!;
         public DbSet<Models.Transaction> Transaction { get; set; } = default!;
+
+        public Models.Quest? SelectedQuest = null;
     }
 }

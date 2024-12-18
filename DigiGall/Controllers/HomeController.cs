@@ -47,6 +47,17 @@ namespace DigiGall.Controllers
             return View();
         }
 
+        public IActionResult QuestDetails(string id)
+        {
+            var quest = _dbContext.Quest.FirstOrDefault(q => q.Id == id);
+            if (quest == null)
+            {
+                return NotFound();
+            }
+
+            return View(quest);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
