@@ -1,0 +1,48 @@
+﻿@model Quest
+@{
+    ViewData["Title"] = "QuestDetails";
+    Layout = "_Layout";
+}
+
+<div class="quest-container">
+  <div style="display: flex; flex-direction:column; align-content:center; text-align:center;  min-height: 30%; margin-bottom: 2rem; height: auto;">
+        <h1 style="font-size: 2rem; font-weight:700;">@Model.Title</h1>
+        <div class="quest-details">
+            <label style="font-size: 2rem; font-weight:700; margin-top: 0.5rem">Description</label>
+            <label style="text-align:justify; margin-bottom: 3rem">@Model.Description</label>
+
+            <label style="font-size: 2rem; font-weight:700; margin-top: 0.5rem">Reward</label>
+
+            <div style="display: flex; flex-direction: row; align-items: center; gap:1rem; margin-bottom: 2rem">
+              <img style="height: 2rem" src="~/resources/coin.svg"/>
+              <label style="font-family: Poppins;
+                font-weight: 600;
+                font-size: 2rem;">@Model.Amount</label>
+            </div>
+
+            <div style="align-self: center; display: flex; flex-direction: column; gap: 1rem">
+                @if (Model.Status == "Completed")
+                {
+                    <img style="height: 3rem" src="~/resources/check.svg" />
+                    <label>Completed</label>
+                }
+                else if (Model.Status == "UnderReview")
+                {
+                    <img style="height: 3rem" src="~/resources/pending.svg" />
+                    <label>Under Review</label>
+                }
+                else if (Model.Status == "Rejected")
+                {
+                    <img style="height: 3rem" src="~/resources/wrong.svg" />
+                    <label>Rejected</label>
+                }
+                else if (Model.Status == "Available")
+                {
+                    <img style="height: 3rem" src="~/resources/upload.svg" />
+                    <label>Available</label>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
