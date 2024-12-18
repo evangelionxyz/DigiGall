@@ -1,13 +1,14 @@
 ﻿namespace DigiGall.Models
 {
-    public class Quest : Transaction
+    public class Quest
     {
+        public string Id { get; set; } = default!;
         public string Title { get; set; } = default!;
         public string Description { get; set; } = default!;
+        public int Amount { get; set; } = 0;
 
         public Quest()
         {
-            Type = "QUEST";
         }
 
         public Quest(string id, string title, string desc, int amount)
@@ -16,7 +17,6 @@
             Title = title;
             Description = desc;
             Amount = amount;
-            Type = "QUEST";
         }
     }
 }

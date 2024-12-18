@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using DigiGall.Models;
 
 namespace DigiGall.Data
 {
@@ -15,7 +16,16 @@ namespace DigiGall.Data
             return await User.Select(u => u.Name).ToListAsync();
         }
 
+        public async Task<List<Transaction>> GetInProgressTransactions()
+        {
+            return await Transaction.Where(t => t.Status == "InProgress")
+                .ToListAsync();
+        }
+
         public DbSet<Models.User> User { get; set; } = default!;
-        public DbSet<Models.Quest> Quests { get; set; } = default!;
+        public DbSet<Models.Quest> Quest { get; set; } = default!;
+        public DbSet<Models.UserQuest> UserQuest { get; set; } = default!;
+
+        public DbSet<Models.Transaction> Transaction { get; set; } = default!;
     }
 }

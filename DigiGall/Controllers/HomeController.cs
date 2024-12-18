@@ -8,6 +8,9 @@ namespace DigiGall.Controllers
 {
     public class HomeController : BaseController
     {
+
+        List<Quest> quests = new List<Quest>();
+
         public HomeController(UserContextService userContextService, ApplicationDbContext dbContext)
             : base(userContextService, dbContext)
         {
@@ -20,6 +23,11 @@ namespace DigiGall.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
+
+            quests.Add(new Quest(Guid.NewGuid().ToString(), "Quest 0", "Test", 10));
+            quests.Add(new Quest(Guid.NewGuid().ToString(), "Quest 1", "Test", 12));
+            quests.Add(new Quest(Guid.NewGuid().ToString(), "Quest 2", "Test", 13));
+
             return View();
         }
 

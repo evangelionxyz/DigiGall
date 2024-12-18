@@ -20,7 +20,7 @@ namespace DigiGall.Models
         public DateTime DateOfBirth { get; set; } = default!;
 
         public User()
-        { 
+        {
         }
 
         public User(string id, string name, string password, string house, string phone, DateTime dateOfBirth)

@@ -10,11 +10,8 @@ namespace DigiGall.Models
         public string AdminId { get; set; } = default!;
         public string UserId { get; set; } = default!;
 
-        public string Category { get; set; } = default!; // EXPENSE / INCOME
         public string Status { get; set; } = default!;
-        protected string Type { get; set; } = default!;
-
-        public int Amount { get; set; } = 0;
+        protected string Type { get; set; } = default!; // prefect/quest
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
