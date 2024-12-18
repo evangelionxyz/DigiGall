@@ -5,6 +5,9 @@
         public string Id { get; set; } = default!;
         public string Title { get; set; } = default!;
         public string Description { get; set; } = default!;
+
+        // Completed, Rejected, UnderReview, Available
+        public string Status { get; set; } = "Available";
         public int Amount { get; set; } = 0;
 
         public Quest()

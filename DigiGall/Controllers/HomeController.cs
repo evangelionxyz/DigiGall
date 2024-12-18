@@ -2,15 +2,13 @@ using System.Diagnostics;
 using DigiGall.Data;
 using DigiGall.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DigiGall.Controllers
 {
     public class HomeController : BaseController
     {
-
-        List<Quest> quests = new List<Quest>();
-
         public HomeController(UserContextService userContextService, ApplicationDbContext dbContext)
             : base(userContextService, dbContext)
         {
@@ -24,16 +22,24 @@ namespace DigiGall.Controllers
                 return RedirectToAction("Login", "Auth");
             }
 
-            quests.Add(new Quest(Guid.NewGuid().ToString(), "Quest 0", "Test", 10));
-            quests.Add(new Quest(Guid.NewGuid().ToString(), "Quest 1", "Test", 12));
-            quests.Add(new Quest(Guid.NewGuid().ToString(), "Quest 2", "Test", 13));
+            // dummy
+            //_dbContext.Quest.Add(new Quest(Guid.NewGuid().ToString(), "Quest 0", "Test", 10));
+            //_dbContext.Quest.Add(new Quest(Guid.NewGuid().ToString(), "Quest 1", "Test", 12));
+            //_dbContext.Quest.Add(new Quest(Guid.NewGuid().ToString(), "Quest 2", "Test", 13));
+            //_dbContext.Quest.Add(new Quest(Guid.NewGuid().ToString(), "Quest 3", "Test", 112));
+            //_dbContext.Quest.Add(new Quest(Guid.NewGuid().ToString(), "Quest 4", "Test", 14));
+            //_dbContext.Quest.Add(new Quest(Guid.NewGuid().ToString(), "Quest 5", "Test", 17));
+            //_dbContext.Quest.Add(new Quest(Guid.NewGuid().ToString(), "Quest 6", "Test", 16));
+            //_dbContext.Quest.Add(new Quest(Guid.NewGuid().ToString(), "Quest 7", "Test", 10));
+            //_dbContext.SaveChanges();
 
             return View();
         }
 
-        public IActionResult Quests()
+        public async Task<IActionResult> Quests()
         {
-            return View();
+            var quests = await _dbContext.Quest.ToListAsync();
+            return View(quests);
         }
 
         public IActionResult History()

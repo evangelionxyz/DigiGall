@@ -12,7 +12,7 @@ namespace DigiGall.Models
         public int Rank { get; set; } = 1;
 
         // id for UserQuest
-        public List<string> UserQuestIds { get; set; } = default!;
+        public List<string> UserQuestIds { get; set; } = new List<string>();
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

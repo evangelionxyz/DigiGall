@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DigiGall.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241218151816_Migration0")]
+    [Migration("20241218170035_Migration0")]
     partial class Migration0
     {
         /// <inheritdoc />
@@ -25,6 +25,31 @@ namespace DigiGall.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("DigiGall.Models.Quest", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Quest");
+                });
+
             modelBuilder.Entity("DigiGall.Models.Transaction", b =>
                 {
                     b.Property<string>("Id")
@@ -34,20 +59,8 @@ namespace DigiGall.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CompletionDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -60,10 +73,6 @@ namespace DigiGall.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Transaction");
-
-                    b.HasDiscriminator().HasValue("Transaction");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("DigiGall.Models.User", b =>
@@ -109,6 +118,10 @@ namespace DigiGall.Data.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TargetId")
                         .IsRequired()
@@ -319,28 +332,6 @@ namespace DigiGall.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("DigiGall.Models.Prefect", b =>
-                {
-                    b.HasBaseType("DigiGall.Models.Transaction");
-
-                    b.HasDiscriminator().HasValue("Prefect");
-                });
-
-            modelBuilder.Entity("DigiGall.Models.Quest", b =>
-                {
-                    b.HasBaseType("DigiGall.Models.Transaction");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("Quest");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

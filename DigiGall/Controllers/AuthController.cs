@@ -21,6 +21,12 @@ namespace DigiGall.Controllers
                 return View(model);
             }
 
+            if (model.House == null)
+            {
+                ModelState.AddModelError("House", "Please choose your house.");
+                return View(model);
+            }
+
             string newId = Guid.NewGuid().ToString();
             User newUser = new User(newId, model.Name, model.Password, model.House, model.Phone, model.DateOfBirth);
             

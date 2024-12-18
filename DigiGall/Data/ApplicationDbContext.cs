@@ -16,16 +16,14 @@ namespace DigiGall.Data
             return await User.Select(u => u.Name).ToListAsync();
         }
 
-        public async Task<List<Transaction>> GetInProgressTransactions()
+        public async Task<List<Transaction>> GetAllTransactionWith(string status)
         {
-            return await Transaction.Where(t => t.Status == "InProgress")
-                .ToListAsync();
+            return await Transaction.Where(t => t.Status == status).ToListAsync();
         }
 
         public DbSet<Models.User> User { get; set; } = default!;
         public DbSet<Models.Quest> Quest { get; set; } = default!;
         public DbSet<Models.UserQuest> UserQuest { get; set; } = default!;
-
         public DbSet<Models.Transaction> Transaction { get; set; } = default!;
     }
 }

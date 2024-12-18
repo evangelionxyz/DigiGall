@@ -177,3 +177,11 @@ body {
   width: fit-content;
 }
 
+.quest-list {
+  gap: 18px;
+  background: white;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 12px;
+  align-items: center;
+}
