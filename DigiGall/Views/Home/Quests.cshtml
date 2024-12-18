@@ -1,5 +1,6 @@
 ﻿@inject DigiGall.Models.UserContextService _userServiceContext
 
+
 @{
     ViewData["Title"] = "Quests Page";
     Layout = "_Layout";
@@ -13,22 +14,21 @@
             margin-bottom: 2rem;
             height: auto;
   ">
-    <h1 style="font-size: 4rem; font-weight:700;">Quests</h1>
-        <label style="font-size: 1.2rem; margin-top: 0.5rem">
+    <h1 style="font-size: 2rem; font-weight:700;">Quests</h1>
+        <label style="margin-top: 0.5rem">
         Complete more Quests to earn more DigiGall
         <br>Tip: Exchange them into Galleons to collect your
         <br>favorite magic items!
     </label>
   </div>
 
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between"
-         style="font-size:1.5rem">
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
         <label class="flex-grow-1">
             Total Quest Completed This Week: 0
         </label>
-        <label>
-            Filter
-        </label>
+        <a >
+            <img style="height: 24px;"  src="~/resources/filter.svg" />
+        </a>
     </div>
     
 </div>

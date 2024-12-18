@@ -10,11 +10,17 @@ namespace DigiGall.Models
         public string Phone { get; set; } = default!;
         public int Galleon { get; set; } = 0;
         public int Rank { get; set; } = 1;
+
+        // id for UserQuest
+        public List<string> UserQuestIds { get; set; } = default!;
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Date of Birth is required")]
         public DateTime DateOfBirth { get; set; } = default!;
-        public User() { 
+
+        public User()
+        { 
         }
 
         public User(string id, string name, string password, string house, string phone, DateTime dateOfBirth)
