@@ -6,15 +6,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DigiGall.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ApplicationDbContext _dbContext;
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ApplicationDbContext dbContext, ILogger<HomeController> logger)
+        public HomeController(UserContextService userContextService, ApplicationDbContext dbContext)
+            : base(userContextService, dbContext)
         {
-            _dbContext = dbContext;
-            _logger = logger;
         }
 
         public IActionResult Index()
@@ -24,22 +20,16 @@ namespace DigiGall.Controllers
             {
                 return RedirectToAction("Login", "Auth");
             }
-
-            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
             return View();
         }
 
         public IActionResult Quests()
         {
-            var userId = HttpContext.Session.GetString("UserId");
-            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
             return View();
         }
 
         public IActionResult History()
         {
-            var userId = HttpContext.Session.GetString("UserId");
-            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
             return View();
         }
 

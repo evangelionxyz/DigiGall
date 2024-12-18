@@ -4,13 +4,11 @@ using DigiGall.Models;
 
 namespace DigiGall.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
-        private readonly ApplicationDbContext _dbContext;
-
-        public AuthController(ApplicationDbContext context)
+        public AuthController(UserContextService userContextService, ApplicationDbContext dbContext)
+            : base(userContextService, dbContext)
         {
-            _dbContext = context;
         }
 
         [HttpPost]
@@ -52,9 +50,7 @@ namespace DigiGall.Controllers
 
         public IActionResult Account()
         {
-            var userId = HttpContext.Session.GetString("UserId");
-            _dbContext.CurrentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
-            return View(_dbContext.CurrentUser);
+            return View();
         }
 
         public IActionResult Register()

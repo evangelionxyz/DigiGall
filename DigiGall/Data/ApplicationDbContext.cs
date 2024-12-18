@@ -11,7 +11,6 @@ namespace DigiGall.Data
             return await User.Select(u => u.Name).ToListAsync();
         }
 
-        public Models.User? CurrentUser = null;
         public DbSet<Models.User> User { get; set; } = default!;
     }
 }

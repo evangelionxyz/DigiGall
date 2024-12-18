@@ -1,0 +1,19 @@
+﻿@inject DigiGall.Models.UserContextService _userServiceContext
+
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Account">
+          <div>
+            <img style="max-height:32px;" src ="~/resources/profile.svg"/>
+            <label style="margin-left: 4px; margin-right: 4px;">@_userServiceContext.Name</label>
+          </div>
+        </a>
+    </li>
+
+    <li style="align-content: center">
+      <a class="coin-container" asp-area="" asp-controller="Auth" asp-action="Account">
+        <img src="~/resources/coin.svg" alt="Galleon"/>
+            <label>@_userServiceContext.Galleon</label>
+      </a>
+    </li>
+</ul>
