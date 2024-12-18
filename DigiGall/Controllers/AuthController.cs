@@ -24,7 +24,6 @@ namespace DigiGall.Controllers
             }
 
             string newId = Guid.NewGuid().ToString();
-            model.House = "Gryffindor";
             User newUser = new User(newId, model.Name, model.Password, model.House, model.Phone, model.DateOfBirth);
             
             _dbContext.User.Add(newUser);

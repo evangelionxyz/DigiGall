@@ -5,16 +5,12 @@
 @model User
 
 <div class="auth-container container">
-
     <!-- Left column-->
-    <div class="auth-content" style="background: linear-gradient(to bottom, #7BB7FF, #FFE785);">
+    <div class="auth-content" style="background: linear-gradient(to bottom, #FFE785, #7BB7FF);">
         <div class="auth-welcome">
             <label>Welcome</label>
-            <img class="auth-welcome-image"
-                 src="~/resources/digigall_transparent.png"
-                 alt="DigiGall Logo" />
+            <img class="auth-welcome-image" src="~/resources/digigall_transparent.png" alt="DigiGall Logo" />
         </div>
-
     </div>
 
     <!-- Right column-->
@@ -45,13 +41,63 @@
                 <input type="date" name="DateOfBirth" class="form-control" required>
             </div>
 
-            @await Html.PartialAsync("_CustomButton", new DigiGall.Models.ButtonModel
-           {
-               Text = "Register",
-               Class = "custom-button digi-btn-primary",
-               Type = "submit",
-               Attributes = "id='register-button'"
-           })
+            <div class="mb-3 form-group">
+                <label class="form-label">House</label>
+                <input type="hidden" asp-for=House id="selectedInput" />
+                <div class="accordion" id="houseAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-controls="collapseOne">
+                                Select your house
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#houseAccordion">
+                            <div class="accordion-body">
+                                <div class="house-button-container">
+                                    <div class="house-button house-select" data-house="Gryffindor" style="background: #8C3A3A;
+                                  margin-right: 4px;
+                                  margin-bottom: 4px;">
+                                        <label class="form-label">Gryffindor</label>
+                                        <img src="~/resources/gryffindor.png" style="height: 35px" />
+                                    </div>
+                                    <div class="house-button house-select" data-house="Ravenclaw" style="background: #38374A;
+                                  margin-left: 4px;
+                                  margin-bottom: 4px;">
+                                        <label class="form-label">Ravenclaw</label>
+                                        <img src="~/resources/ravenclaw.png" style="height: 35px" />
+                                    </div>
+                                </div>
+
+                                <div class="house-button-container">
+                                    <div class="house-button house-select" data-house="Slytherin" style="background: #345327;
+                                  margin-right: 4px;
+                                  margin-top: 4px;">
+                                        <label class="form-label">Slytherin</label>
+                                        <img src="~/resources/slytherin.png" style="height: 35px" />
+                                    </div class="house-button">
+                                    <div class="house-button house-select" data-house="Hufflepuff" style="background: #E9BE37;
+                                  margin-left: 4px;
+                                  margin-top: 4px;">
+                                        <label class="form-label">Hufflepuff</label>
+                                        <img src="~/resources/hufflepuff.png" style="height: 35px" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        @await Html.PartialAsync("_CustomButton", new DigiGall.Models.ButtonModel
+        {
+           Text = "Register",
+           Class = "custom-button digi-btn-primary",
+           Type = "submit",
+           Attributes = "id='register-button'"
+        })
+
         </form>
 
         <div class="mt-3 text-center">
@@ -62,7 +108,18 @@
                 </a>
             </label>
         </div>
-
-
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.house-select').on('click', function () {
+                var selectedHouse = $(this).data('house');
+                $('#selectedInput').val(selectedHouse);
+                $('.accordion-button').text(selectedHouse);
+                $('#collapseOne').collapse('hide');
+            });
+        });
+    </script>
+}
