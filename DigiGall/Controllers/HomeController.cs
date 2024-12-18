@@ -58,6 +58,18 @@ namespace DigiGall.Controllers
             return View(quest);
         }
 
+        public IActionResult ActionQuestAvailable(int amount)
+        {
+            var currentUser = _dbContext.User.FirstOrDefault(u => u.Id == _userContextService.Id);
+            if (currentUser != null)
+            {
+                currentUser.Galleon += amount;
+                _dbContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
