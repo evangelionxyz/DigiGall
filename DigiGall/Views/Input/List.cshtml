@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<DigiGall.Models.User>
+
+<h1>Input DigiGall</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>DigiGall</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Galleon 
+                    <span style="color: red;"><a class="btn btn-primary" asp-controller="User" asp-action="Edit" >&#x1F534;</a></span></td>
+
+            </tr>
+        }
+    </tbody>
+</table>

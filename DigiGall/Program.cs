@@ -15,6 +15,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<UserContextService>();
 
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy("PrefectOnly", policy =>
+//        policy.RequireRole("Prefect"));
+//});
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -51,3 +57,4 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
