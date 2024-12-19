@@ -1,25 +1,42 @@
 ﻿namespace DigiGall.Models
 {
-    public class Quest
+    public class Quest : ModelBase
     {
-        public string Id { get; set; } = default!;
         public string Title { get; set; } = default!;
         public string Description { get; set; } = default!;
-
-        // Completed, Rejected, UnderReview, Available
-        public string Status { get; set; } = "Available";
-        public int Amount { get; set; } = 0;
+        public int Reward { get; set; } = 0;
+        public string Status { get; set; } = default!;
 
         public Quest()
+            : base()
         {
         }
 
-        public Quest(string id, string title, string desc, int amount)
+        public Quest(string title, string desc, int reward)
+           : base()
         {
-            Id = id;
             Title = title;
             Description = desc;
-            Amount = amount;
+            Reward = reward;
+            Status = "Available";
+        }
+
+        public Quest(string title, string desc, int reward, string status)
+            : base()
+        {
+            Title = title;
+            Description = desc;
+            Reward = reward;
+            Status = status;
+        }
+
+        public Quest(string id, string title, string desc, int reward, string status)
+            : base(id)
+        {
+            Title = title;
+            Description = desc;
+            Reward = reward;
+            Status = status;
         }
     }
 }
