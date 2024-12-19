@@ -5,10 +5,9 @@ namespace DigiGall.Models
     public class Transaction : ModelBase
     {
         // global (available for all user)
-
-        public string AdminId { get; set; } = default!;
-        public string UserId { get; set; } = default!;
-        public string Status { get; set; } = default!;
+        public string TargetId { get; set; } = default!;
+        public string Title { get; set; } = default!;
+        public string Description { get; set; } = default!;
         protected string Type { get; set; } = default!; // prefect/quest
 
         [DataType(DataType.Date)]
@@ -21,23 +20,11 @@ namespace DigiGall.Models
         {
         }
 
-        public Transaction(string adminId, string userId, string status, string type)
+        public Transaction(string targetId, string type)
             : base()
         {
-            AdminId = adminId;
-            UserId = userId;
-            Status = status;
+            TargetId = targetId;
             Type = type;
         }
-
-        public Transaction(string id, string adminId, string userId, string status, string type)
-            : base(id)
-        {
-            AdminId = adminId;
-            UserId = userId;
-            Status = status;
-            Type = type;
-        }
-
     }
 }

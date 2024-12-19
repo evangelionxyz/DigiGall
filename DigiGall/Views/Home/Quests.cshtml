@@ -42,36 +42,42 @@
                   font-size: 2rem;"
                 >@item.Quest.Reward</label>
                   <div class="flex-grow-1">
-                     <div style="display: flex; flex-direction: row; margin-bottom:8px; justify-content: space-between"> 
-                         <label style="font-size: 1.5rem; font-weight: 600">@item.Quest.Title</label> 
-                         @if (item.UserQuest.Status == "Available") 
-                         { 
-                             <label style="background: #ADADAD; height: fit-content; 
-                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px; 
-                                 border-radius: 10px;">@item.UserQuest.Status</label> 
-                         } 
-                         else if (item.UserQuest.Status == "Completed") 
-                         { 
-                             <label style="background: #46FF13; height: fit-content; 
-                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px; 
-                                 border-radius: 10px;">@item.UserQuest.Status</label> 
-                         } 
-                         else if (item.UserQuest.Status == "Rejected") 
-                         { 
-                             <label style="background: #FF2424; height: fit-content; color: white; 
-                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px; 
-                                 border-radius: 10px;">@item.UserQuest.Status</label> 
-                         } 
-                         else if (item.UserQuest.Status == "UnderReview") 
-                         { 
-                             <label style="background: #D0FF24; height: fit-content; 
-                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px; 
-                                 border-radius: 10px;">Under Review</label> 
-                         } 
-                     </div> 
-                     <div style="background: #337AB7; border-radius: 12px; height: 16px"> 
-                       <label></label> 
-                     </div> 
+                    @if (item.UserQuest != null)
+                    {
+                        <div style="display: flex; flex-direction: row; margin-bottom:8px; justify-content: space-between">
+                            <label style="font-size: 1.5rem; font-weight: 600">@item.Quest.Title</label>
+                            @if (item.UserQuest.Status == "Available")
+                            {
+                                <label style="background: #ADADAD; height: fit-content;
+                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px;
+                                 border-radius: 10px;">@item.UserQuest.Status</label>
+                            }
+                            else if (item.UserQuest.Status == "Completed")
+                            {
+                                <label style="background: #46FF13; height: fit-content;
+                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px;
+                                 border-radius: 10px;">@item.UserQuest.Status</label>
+                            }
+                            else if (item.UserQuest.Status == "Rejected")
+                            {
+                                <label style="background: #FF2424; height: fit-content; color: white;
+                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px;
+                                 border-radius: 10px;">@item.UserQuest.Status</label>
+                            }
+                            else if (item.UserQuest.Status == "UnderReview")
+                            {
+                                <label style="background: #D0FF24; height: fit-content;
+                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px;
+                                 border-radius: 10px;">Under Review</label>
+                            }
+
+                        </div>
+                        <div style="background: #337AB7; border-radius: 12px; height: 16px">
+                            <label></label>
+                        </div>
+                    }
+
+                     
                    </div>
 
                   <a asp-controller="Home" asp-action="QuestDetails" asp-route-id="@item.Quest.Id">

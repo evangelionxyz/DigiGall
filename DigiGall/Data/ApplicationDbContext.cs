@@ -11,19 +11,11 @@ namespace DigiGall.Data
         {
         }
 
-        public async Task<List<string>> GetUserNameAsync()
-        {
-            return await User.Select(u => u.Name).ToListAsync();
-        }
-
-        public async Task<List<Transaction>> GetAllTransactionWith(string status)
-        {
-            return await Transaction.Where(t => t.Status == status).ToListAsync();
-        }
-
         public DbSet<Models.User> User { get; set; } = default!;
         public DbSet<Models.Quest> Quest { get; set; } = default!;
+
         public DbSet<Models.UserQuest> UserQuest { get; set; } = default!;
+        public DbSet<Models.Prefect> Prefect { get; set; } = default!;
         public DbSet<Models.Transaction> Transaction { get; set; } = default!;
 
         public Models.Quest? SelectedQuest = null;

@@ -1,0 +1,54 @@
+﻿@inject DigiGall.Models.UserContextService _userServiceContext
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DigiGall</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DigiGall.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+            <div class="container-fluid">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img style="max-height:42px" src="~/resources/digigall_transparent.png" alt="DigiGallQuest" />
+                </a>
+
+                <div class="flex-grow-1 collapse d-sm-inline-flex justify-content-between">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                
+                @if (_userServiceContext.Name != null)
+                {
+                  <div style="display: flex; flex-direction: row; gap: 12px;
+                      align-content: center;
+                      align-items: center;">
+                      <img style="max-height:32px;" src="~/resources/profile.svg" />
+                      <label style="margin-left: 4px; margin-right: 4px;">Prefek</label>
+                      <a asp-area="">
+                            <img style="max-height: 32px;" src="~/resources/notification.svg" alt="notification" />
+                      </a>
+                  </div>
+                }
+            </div>
+        </nav>
+    </header>
+    <div>
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

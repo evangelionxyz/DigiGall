@@ -22,6 +22,14 @@ namespace DigiGall.Controllers
                 return RedirectToAction("Login", "Auth");
             }
 
+            if (currentUser != null)
+            {
+                if (currentUser.House == "Slytherin")
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
+            }
+
             ////dummy
             //_dbContext.Quest.Add(new Quest("Quest 0", "Test", 10));
             //_dbContext.Quest.Add(new Quest("Quest 1", "Test", 12));
@@ -48,6 +56,24 @@ namespace DigiGall.Controllers
             var userQuests = await _dbContext.UserQuest
                 .Where(uq => uq.UserId == currentUser.Id)
                 .ToListAsync();
+
+            var missionQuests = globalQuests
+                .Where(gq => !userQuests.Any(uq => uq.TargetId == gq.Id))
+                .ToList();
+
+            foreach (var quest in missionQuests)
+            {
+                var newUserQuest = new UserQuest
+                {
+                    TargetId = quest.Id,
+                    UserId = currentUser.Id,
+                    Status = "Available"
+                };
+                _dbContext.UserQuest.Add(newUserQuest);
+                userQuests.Add(newUserQuest);
+            }
+
+            await _dbContext.SaveChangesAsync();
 
             var questDetails = globalQuests.Select(gq => new QuestViewModel
             {
@@ -79,9 +105,14 @@ namespace DigiGall.Controllers
             if (currentUser != null)
             {
                 var selectedUserQuest = _dbContext.UserQuest.FirstOrDefault(q => q.TargetId == targetQuestId);
-                if (selectedUserQuest != null)
+                var globalQuest = _dbContext.Quest.FirstOrDefault(q => q.Id == targetQuestId);
+                if (selectedUserQuest != null && globalQuest != null)
                 {
                     selectedUserQuest.Status = "UnderReview";
+                    Transaction newTransaction = new Transaction(targetQuestId, "Quest");
+                    newTransaction.Description = "Ini deskripsi";
+                    newTransaction.Title = "Requesting " + globalQuest.Title;
+                    _dbContext.Transaction.Add(newTransaction);
                     _dbContext.SaveChanges();
                 }
             }
@@ -98,6 +129,12 @@ namespace DigiGall.Controllers
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetString("UserId", "");
+            return RedirectToAction("Login", "Auth");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

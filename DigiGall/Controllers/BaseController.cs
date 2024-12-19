@@ -32,7 +32,6 @@ namespace DigiGall.Controllers
                     _userContextService.Rank = currentUser.Rank;
                     _userContextService.Phone = currentUser.Phone;
                     _userContextService.House = currentUser.House;
-                    _userContextService.UserQuestIds = currentUser.UserQuestIds;
                 }
             };
 

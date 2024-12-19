@@ -9,5 +9,4 @@ public class UserContextService
     public string Phone { get; set; } = default!;
     public int Galleon { get; set; } = default!;
     public int Rank { get; set; } = 1;
-    public List<string> UserQuestIds = default!;
 }

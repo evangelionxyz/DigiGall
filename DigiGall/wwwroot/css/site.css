@@ -197,3 +197,15 @@ body {
   width: 100%;
 }
 
+.admin-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.admin-content {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  font-size: 1.5rem;
+  align-content: flex-start
+}

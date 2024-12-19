@@ -10,9 +10,6 @@ namespace DigiGall.Models
         public int Galleon { get; set; } = 0;
         public int Rank { get; set; } = 1;
 
-        // id for UserQuest
-        public List<string> UserQuestIds { get; set; } = new List<string>();
-
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Date of Birth is required")]
@@ -41,11 +38,6 @@ namespace DigiGall.Models
             House = house;
             Phone = phone;
             DateOfBirth = dateOfBirth;
-        }
-
-        public void AddQuest(UserQuest quest)
-        {
-            UserQuestIds.Add(quest.Id);
         }
     }
 }

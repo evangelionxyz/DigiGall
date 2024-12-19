@@ -5,15 +5,14 @@
     Layout = "_Layout";
 }
 
-<h1>Account page</h1>
-<p>Hello @_userContext.Name</p>
+<div class="quest-container">
+  <label style="font-size: 32px">
+    @_userContext.Name
+  </label>
 
-<ul>
-  @if (_userContext.UserQuestIds.Any())
-  {
-        @foreach (string userQuestId in _userContext.UserQuestIds)
-        {
-          <li>@userQuestId</li>
-        }
-  }
-</ul>
+  <a asp-area="" asp-controller="Home" asp-action="Logout">
+    <label>Logout</label>
+  </a>
+
+</div>
+
