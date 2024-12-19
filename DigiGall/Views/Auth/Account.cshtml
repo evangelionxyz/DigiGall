@@ -1,8 +1,19 @@
-﻿@inject DigiGall.Models.UserContextService _userServiceContext
+﻿@inject DigiGall.Data.ApplicationDbContext _dbContext
+@inject DigiGall.Models.UserContextService _userContext
 @{
     ViewData["Title"] = "Account Page";
     Layout = "_Layout";
 }
 
 <h1>Account page</h1>
-<p>Hello @_userServiceContext.Name</p>
+<p>Hello @_userContext.Name</p>
+
+<ul>
+  @if (_userContext.UserQuestIds.Any())
+  {
+        @foreach (string userQuestId in _userContext.UserQuestIds)
+        {
+          <li>@userQuestId</li>
+        }
+  }
+</ul>

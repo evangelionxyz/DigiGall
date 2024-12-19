@@ -1,5 +1,5 @@
 ﻿@inject DigiGall.Models.UserContextService _userServiceContext
-@model List<Quest>
+@model IEnumerable<DigiGall.Models.QuestViewModel>
 
 @{
     ViewData["Title"] = "Quests Page";
@@ -33,49 +33,48 @@
 
     @if (Model != null && Model.Any())
     {
-        @foreach (var quest in Model)
+        @foreach (var item in Model)
         {
             <div class="d-sm-inline-flex justify-content-between quest-list">
               <img style="height:32px;" src="~/resources/coin.svg"/>
                 <label style="font-family: Poppins;
                   font-weight: 600;
                   font-size: 2rem;"
-                >@quest.Amount</label>
-
+                >@item.Quest.Reward</label>
                   <div class="flex-grow-1">
-                    <div style="display: flex; flex-direction: row; margin-bottom:8px; justify-content: space-between">
-                        <label style="font-size: 1.5rem; font-weight: 600">@quest.Title</label>
-                        @if (quest.Status == "Available")
-                        {
-                            <label style="background: #ADADAD; height: fit-content;
-                                padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px;
-                                border-radius: 10px;">@quest.Status</label>
-                        }
-                        else if (quest.Status == "Completed")
-                        {
-                            <label style="background: #46FF13; height: fit-content;
-                                padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px;
-                                border-radius: 10px;">@quest.Status</label>
-                        }
-                        else if (quest.Status == "Rejected")
-                        {
-                            <label style="background: #FF2424; height: fit-content; color: white;
-                                padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px;
-                                border-radius: 10px;">@quest.Status</label>
-                        }
-                        else if (quest.Status == "UnderReview")
-                        {
-                            <label style="background: #D0FF24; height: fit-content;
-                                padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px;
-                                border-radius: 10px;">Under Review</label>
-                        }
-                    </div>
-                    <div style="background: #337AB7; border-radius: 12px; height: 16px">
-                      <label></label>
-                    </div>
-                  </div>
+                     <div style="display: flex; flex-direction: row; margin-bottom:8px; justify-content: space-between"> 
+                         <label style="font-size: 1.5rem; font-weight: 600">@item.Quest.Title</label> 
+                         @if (item.UserQuest.Status == "Available") 
+                         { 
+                             <label style="background: #ADADAD; height: fit-content; 
+                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px; 
+                                 border-radius: 10px;">@item.UserQuest.Status</label> 
+                         } 
+                         else if (item.UserQuest.Status == "Completed") 
+                         { 
+                             <label style="background: #46FF13; height: fit-content; 
+                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px; 
+                                 border-radius: 10px;">@item.UserQuest.Status</label> 
+                         } 
+                         else if (item.UserQuest.Status == "Rejected") 
+                         { 
+                             <label style="background: #FF2424; height: fit-content; color: white; 
+                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px; 
+                                 border-radius: 10px;">@item.UserQuest.Status</label> 
+                         } 
+                         else if (item.UserQuest.Status == "UnderReview") 
+                         { 
+                             <label style="background: #D0FF24; height: fit-content; 
+                                 padding-top: 2px; padding-bottom:2px; padding-left: 12px; padding-right: 12px; 
+                                 border-radius: 10px;">Under Review</label> 
+                         } 
+                     </div> 
+                     <div style="background: #337AB7; border-radius: 12px; height: 16px"> 
+                       <label></label> 
+                     </div> 
+                   </div>
 
-                  <a asp-controller="Home" asp-action="QuestDetails" asp-route-id="@quest.Id">
+                  <a asp-controller="Home" asp-action="QuestDetails" asp-route-id="@item.Quest.Id">
                     <label style="cursor: pointer; text-decoration: underline">See details</label>
                   </a>
             </div>

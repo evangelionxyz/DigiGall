@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace DigiGall.Models
 {
-    public class User
+    public class User : ModelBase
     {
-        public string Id { get; set; } = default!;
         public string Name { get; set; } = default!;
         public string Password { get; set; } = default!;
         public string House { get; set; } = default!;
@@ -20,17 +19,33 @@ namespace DigiGall.Models
         public DateTime DateOfBirth { get; set; } = default!;
 
         public User()
+            : base()
         {
         }
 
-        public User(string id, string name, string password, string house, string phone, DateTime dateOfBirth)
+        public User(string name, string password, string house, string phone, DateTime dateOfBirth)
+            : base()
         {
-            Id = id;
             Name = name;
             Password = password;
             House = house;
             Phone = phone;
             DateOfBirth = dateOfBirth;
+        }
+
+        public User(string id, string name, string password, string house, string phone, DateTime dateOfBirth)
+            : base(id)
+        {
+            Name = name;
+            Password = password;
+            House = house;
+            Phone = phone;
+            DateOfBirth = dateOfBirth;
+        }
+
+        public void AddQuest(UserQuest quest)
+        {
+            UserQuestIds.Add(quest.Id);
         }
     }
 }

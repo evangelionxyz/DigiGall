@@ -9,6 +9,7 @@ namespace DigiGall.Controllers
     {
         protected readonly ApplicationDbContext _dbContext;
         protected readonly UserContextService _userContextService;
+        protected User? currentUser = null;
 
         public BaseController(UserContextService userContextService, ApplicationDbContext dbContext)
         {
@@ -21,7 +22,7 @@ namespace DigiGall.Controllers
             var userId = HttpContext.Session.GetString("UserId");
             if (!string.IsNullOrEmpty(userId))
             {
-                var currentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
+                currentUser = _dbContext.User.FirstOrDefault(u => u.Id == userId);
                 if (currentUser != null)
                 {
                     _userContextService.Name = currentUser.Name;
@@ -31,6 +32,7 @@ namespace DigiGall.Controllers
                     _userContextService.Rank = currentUser.Rank;
                     _userContextService.Phone = currentUser.Phone;
                     _userContextService.House = currentUser.House;
+                    _userContextService.UserQuestIds = currentUser.UserQuestIds;
                 }
             };
 
