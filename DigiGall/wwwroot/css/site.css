@@ -209,3 +209,21 @@ body {
   font-size: 1.5rem;
   align-content: flex-start
 }
+
+.leaderboard-container {
+  display: flex;
+  flex-direction: row;
+  font-family: Poppins;
+  font-weight: 500;
+
+  align-items:end;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.leaderboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
