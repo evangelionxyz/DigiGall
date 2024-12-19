@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Membuat tinggi body penuh */
+        }
+
+        header {
+            background-color: #F7F7F7; /* Warna latar belakang */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Menambahkan shadow */
+            z-index: 10; /* Tetapkan nilai z-index lebih tinggi dari elemen lain */
+            width: 100%; /* Pastikan header meluas ke seluruh lebar layar */
+            flex: 0 0 80px; /* Tinggi tetap untuk header */
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1; /* Sisa ruang diisi oleh konten utama dan sidebar */
+            overflow: hidden; /* Mencegah elemen meluap */
+        }
+
+        .sidebar {
+            width: 200px; /* Lebar sidebar */
+            background-color: #FFFFFF; /* Warna latar belakang sidebar */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow di kanan sidebar */
+            display: flex;
+            flex-direction: column;
+            z-index: 5;
+            padding: 15px;
+            overflow-y: auto; /* Scroll jika konten terlalu tinggi */
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2); /* Shadow di kanan sidebar */
+        }
+
+        .main-content {
+            flex: 1; /* Konten utama mengambil sisa ruang */
+            background-color: #FFFEF5; /* Warna latar belakang konten */
+            padding: 20px; /* Padding untuk konten utama */
+            overflow-y: auto; /* Scroll jika konten terlalu tinggi */
+        }
+
+        .sidebar a {
+            text-decoration: none; /* Hilangkan underline default */
+            color: #000; /* Warna teks */
+            font-weight: bold; /* Teks lebih tebal */
+            padding: 10px 0; /* Jarak vertikal */
+            border-bottom: 2px solid #E0E0E0; /* Garis bawah tetap */
+            transition: border-color 0.3s ease, color 0.3s ease; /* Animasi untuk hover */
+        }
+
+            .sidebar a:hover {
+                border-bottom: 2px solid #007BFF; /* Garis bawah berubah warna saat hover */
+                color: #007BFF; /* Warna teks berubah saat hover */
+            }
+
+            .sidebar a:not(:last-child) {
+                margin-bottom: 15px; /* Jarak antar link */
+            }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="d-flex align-items-center justify-content-between px-3">
+        <!-- Logo Aplikasi (Kiri) -->
+        <div class="logo py-">
+            <img src="~/resources/digigall_transparent.png" alt="Logo Aplikasi" style="height: 60px;" />
+        </div>
+
+        <!-- Logo Akun Prefek dan Ikon Notifikasi (Kanan) -->
+        <div class="d-flex align-items-center">
+            <!-- Icon Akun Prefek -->
+            <div class="me-3">
+                <img src="~/resources/icon-prefek.png" alt="Akun Prefek" style="height: 40px;" />
+            </div>
+            <!-- Icon Notifikasi -->
+            <div class="notification-icon">
+                <img src="~/resources/bell.png" alt="Notifikasi" style="height: 30px;" />
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama dan Sidebar -->
+    <div class="main-container">
+        <!-- Sidebar Kiri -->
+        <div class="sidebar">
+            <a href="#" class="text">Add DigiGall</a>
+            <a href="#" class="text">Notifications</a>
+        </div>
+
+        <!-- Konten Utama -->
+        <div class="main-content">
+            <main>
+                @RenderBody() <!-- Konten halaman akan dirender di sini -->
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
