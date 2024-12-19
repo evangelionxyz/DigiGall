@@ -12,7 +12,7 @@ namespace DigiGall.Controllers
 
         public async Task<IActionResult> Notification()
         {
-            // Ambil transaksi dengan status "In Progress"
+            // Ambil transaksi dengan status "UnderReview"
             //var userId = HttpContext.Session.GetString("UserId");
             //var inProgressTransactions = await _dbContext.GetAllTransactionWith("UnderReview", userId, "Quest");
             var inProgressTransactions = await _dbContext.GetAllTransactionWith("UnderReview");
