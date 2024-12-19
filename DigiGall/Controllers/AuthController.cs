@@ -27,9 +27,7 @@ namespace DigiGall.Controllers
                 return View(model);
             }
 
-            string newId = Guid.NewGuid().ToString();
-            User newUser = new User(newId, model.Name, model.Password, model.House, model.Phone, model.DateOfBirth);
-            
+            User newUser = new User(model.Name, model.Password, model.House, model.Phone, model.DateOfBirth);
             _dbContext.User.Add(newUser);
             _dbContext.SaveChanges();
 
